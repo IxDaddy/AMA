@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkWindow" id="app">
+    <property name="can_focus">False</property>
+    <property name="default_width">1920</property>
+    <property name="default_height">1080</property>
+    <property name="has_resize_grip">True</property>
+    <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
+    <child type="titlebar">
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkLayout">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="width">70</property>
+        <property name="height">70</property>
+        <child>
+          <object class="GtkImage" id="image_price">
+            <property name="width_request">600</property>
+            <property name="height_request">400</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">placeholder.png</property>
+          </object>
+          <packing>
+            <property name="x">351</property>
+            <property name="y">48</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="width_request">494</property>
+            <property name="height_request">41</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkComboBoxText" id="CBT_action">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">0</property>
+                <property name="add_tearoffs">True</property>
+                <property name="tearoff_title" translatable="yes">Action</property>
+                <items>
+                  <item translatable="yes">BTC-USD</item>
+                  <item translatable="yes">ETH-USD</item>
+                  <item translatable="yes">AAPL</item>
+                  <item translatable="yes">TSLA</item>
+                  <item translatable="yes">BNB-USD</item>
+                  <item translatable="yes">TSM</item>
+                  <item translatable="yes">DOGE-USD</item>
+                  <item translatable="yes">XRP-USD</item>
+                  <item translatable="yes">ADA-USD</item>
+                  <item translatable="yes">DASH-USD</item>
+                  <item translatable="yes">LTC-USD</item>
+                  <item translatable="yes">MSFT</item>
+                  <item translatable="yes">MC.PA</item>
+                  <item translatable="yes">^FCHI</item>
+                  <item translatable="yes">EURUSD=X</item>
+                  <item translatable="yes">JPYEUR=X</item>
+                  <item translatable="yes">GC=F</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="CBT_inter">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">8</property>
+                <property name="tearoff_title" translatable="yes">Inter</property>
+                <items>
+                  <item translatable="yes">1m</item>
+                  <item translatable="yes">2m</item>
+                  <item translatable="yes">5m</item>
+                  <item translatable="yes">15m</item>
+                  <item translatable="yes">30m</item>
+                  <item translatable="yes">60m</item>
+                  <item translatable="yes">90m</item>
+                  <item translatable="yes">1h</item>
+                  <item translatable="yes">1d</item>
+                  <item translatable="yes">5d</item>
+                  <item translatable="yes">1wk</item>
+                  <item translatable="yes">1mo</item>
+                  <item translatable="yes">3mo</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="CBT_range">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">5</property>
+                <items>
+                  <item translatable="yes">1d</item>
+                  <item translatable="yes">5d</item>
+                  <item translatable="yes">1mo</item>
+                  <item translatable="yes">3mo</item>
+                  <item translatable="yes">6mo</item>
+                  <item translatable="yes">1y</item>
+                  <item translatable="yes">2y</item>
+                  <item translatable="yes">5y</item>
+                  <item translatable="yes">10y</item>
+                  <item translatable="yes">ytd</item>
+                  <item translatable="yes">max</item>
+                </items>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="btn_search">
+                <property name="label" translatable="yes">Search</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="on_btn_search_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="x">13</property>
+            <property name="y">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="grid_indicators">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="row_spacing">1</property>
+            <property name="column_spacing">13</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="x">14</property>
+            <property name="y">54</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="btn_add_indicator">
+            <property name="label" translatable="yes">Add indicator</property>
+            <property name="width_request">120</property>
+            <property name="height_request">52</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <signal name="clicked" handler="on_add_indicator" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">568</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="image_indic">
+            <property name="width_request">100</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="stock">gtk-missing-image</property>
+          </object>
+          <packing>
+            <property name="x">351</property>
+            <property name="y">648</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="width_request">227</property>
+            <property name="height_request">223</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">logo.png</property>
+          </object>
+          <packing>
+            <property name="x">10</property>
+            <property name="y">628</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="width_request">211</property>
+            <property name="height_request">80</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Rsi:</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_right">39</property>
+                <property name="label" translatable="yes">MACD:</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">MA:</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_rsi">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">---</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_macd">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">---</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_ma">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">---</property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">               </property>
+                <attributes>
+                  <attribute name="scale" value="2"/>
+                </attributes>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="x">1600</property>
+            <property name="y">80</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
