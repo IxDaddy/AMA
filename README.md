@@ -1,0 +1,2 @@
+# AMA
+Algorithmic Market Analyzer
