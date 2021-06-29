@@ -198,7 +198,7 @@ void Tweet(Trade *T, int Signal)
         sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE LONG \n%s @ %.2lf$\"",T->BinanceStr, price);
         break;
     case CLOSE_SHORT:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE SHORT \n%s @ %.2lf$\","T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE SHORT \n%s @ %.2lf$\"",T->BinanceStr, price);
         break;
     case CLOSE_AND_BUY:
         sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nCLOSE SHORT AND BUY \n%s @ %.2lf$ \"", T->BinanceStr, price);
