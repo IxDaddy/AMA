@@ -14,12 +14,10 @@ def Trade(argv):
     }
     request_client.change_initial_leverage(trade["symbole"],trade["leverage"])
 
-    if trade["side"] == "1":
-        sid = OrderSide.BUY
-    elif trade["side"] == "-1":
+    if trade["side"][0] == "-":
         sid = OrderSide.SELL
     else:
-        return
+        sid = OrderSide.BUY
     request_client.post_order(symbol=str(trade['symbole']), side=sid, ordertype=OrderType.MARKET, quantity=float(trade["qty"]))
     
     

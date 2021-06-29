@@ -46,10 +46,11 @@
 #define HOLD 0
 #define BUY 1
 #define SELL -1
-#define CLOSE_LONG 2
-#define CLOSE_SHORT -2
-#define CLOSE_AND_SELL  3
-#define CLOSE_AND_BUY -3
+#define CLOSE_SHORT 2
+#define CLOSE_LONG -2
+#define CLOSE_AND_BUY 3
+#define CLOSE_AND_SELL -3
+
 
 //STOCK
 #define BTC 1

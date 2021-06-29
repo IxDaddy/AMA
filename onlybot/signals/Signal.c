@@ -184,25 +184,27 @@ void Tweet(Trade *T, int Signal)
     if (cmd == NULL)
         err(1, "Out of memory");
 
+    double price = BinancePrice(T->Stock);
+
     switch (Signal)
     {
     case BUY:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert : BUY %s @ %.2lf$ \"", T->BinanceStr, BinancePrice(T->Stock));
+        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nBUY %s @ %.2lf$ \"", T->BinanceStr, price);
         break;
     case SELL:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert : SELL %s @ %.2lf$ \"", T->BinanceStr, BinancePrice(T->Stock));
+        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nSELL \n%s @ %.2lf$ \"", T->BinanceStr, price);
         break;
     case CLOSE_LONG:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé : CLOSE LONG\"");
+        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE LONG \n%s @ %.2lf$\"",T->BinanceStr, price);
         break;
     case CLOSE_SHORT:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé : CLOSE SHORT\"");
+        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE SHORT \n%s @ %.2lf$\","T->BinanceStr, price);
         break;
     case CLOSE_AND_BUY:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé : CLOSE SHORT AND BUY %s @ %.2lf$ \"", T->BinanceStr, BinancePrice(T->Stock));
+        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nCLOSE SHORT AND BUY \n%s @ %.2lf$ \"", T->BinanceStr, price);
         break;
     case CLOSE_AND_SELL:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé : CLOSE LONG AND SELL %s @ %.2lf$ \"", T->BinanceStr, BinancePrice(T->Stock));
+        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nCLOSE LONG AND SELL \n%s @ %.2lf$ \"", T->BinanceStr, price);
         break;
     default:
         break;
@@ -245,7 +247,8 @@ void TradeOrder(Trade *T, int Signal)
     char *command = malloc(strlen("python3 BinanceAPI.py") + strlen(T->BinanceStr) + sizeof(T->Quantity) + sizeof(T->Status) + 1);
     if (command == NULL)
         err(1, "Out of memory");
-    sprintf(command, "python3 BinanceAPI.py %s %.3f %d %d", T->BinanceStr, T->Quantity*TradeUpdater(T, Signal), T->Status, T->Leverage);
+
+    sprintf(command, "python3 BinanceAPI.py %s %.3f %d %d", T->BinanceStr, T->Quantity*TradeUpdater(T, Signal), Signal, T->Leverage);
     system(command);
     free(command);
     Tweet(T,Signal);
@@ -264,6 +267,7 @@ void SignalMain(Trade *T, char *interval, char *range)
 {
     StockData *Mat = APItoTXTAIO(T->YahooStr, interval, range);
     Signal *S = SignalChoose(Mat,T);
+    S->ma = CLOSE_AND_SELL;
     SignalAction(S, T);
     StockData_destroy(Mat);
 }
