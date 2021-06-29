@@ -20,7 +20,7 @@ int main()
         // free(S);
         //system("./signal BTC-USD 1m 1d");
 
-        if (time(NULL) % (60) == 40)
+        if (time(NULL) % (10) == 5)
         {
             SignalMain(T ,"1m", "1d");
             i++;

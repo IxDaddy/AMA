@@ -95,7 +95,7 @@ void SignalMA(StockData *m, Signal *S, size_t fastP, size_t slowP, int TradeStat
             S->ma = BUY;
             break;
         case LONG:
-            S->ma = CLOSE_AND_SELL;
+            S->ma = HOLD;
             break;
         case SHORT:
             S->ma = CLOSE_AND_BUY;
@@ -115,7 +115,7 @@ void SignalMA(StockData *m, Signal *S, size_t fastP, size_t slowP, int TradeStat
             S->ma = CLOSE_AND_BUY;
             break;
         case SHORT:
-            S->ma = CLOSE_AND_SELL;
+            S->ma = HOLD;
             break;
         default:
             break;
@@ -163,7 +163,6 @@ Signal *SignalChoose(StockData *m, Trade *T)
 {
     Signal *S = SignalInit();
     SignalMA(m, S, 12, 21,T->Status);
-    SignalRSI(m, S, 14, 80, 20);
     return S;
 }
 
@@ -256,7 +255,7 @@ void TradeOrder(Trade *T, int Signal)
 
 void SignalAction(Signal *S, Trade *T)
 {
-    if (S->ma == BUY || S->ma == SELL)
+    if (S->ma != HOLD)
     {
         TradeOrder(T, S->ma);
     }
@@ -267,7 +266,6 @@ void SignalMain(Trade *T, char *interval, char *range)
 {
     StockData *Mat = APItoTXTAIO(T->YahooStr, interval, range);
     Signal *S = SignalChoose(Mat,T);
-    S->ma = CLOSE_AND_SELL;
     SignalAction(S, T);
     StockData_destroy(Mat);
 }
