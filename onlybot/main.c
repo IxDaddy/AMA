@@ -88,7 +88,6 @@ int main()
     //PRIX
     double price;
     OHLC *TickData = OHLCInit();
-    //StockData *Mat = APItoTXTAIO("BTC-USD","1m","1d");
 
     //TIME
     time_t t;
@@ -111,19 +110,15 @@ int main()
                 UpdateStockDataPerTick(Mat,TickData);
                 SignalMain(T,Mat);
                 OHLCReset(TickData,price);
-                printf("NOUVELLE MINUTE\n");
             }
             else
             {
                 OHLCUpdate(TickData,price);
             }
-
-            printf("%d:%d:%d - prix = %lf\n", tv->tm_hour, tv->tm_min, tv->tm_sec, price);
             t1++;
         }
     }
-
     TradeDelete(T);
-    //StockData_destroy(Mat);
+    StockData_destroy(Mat);
     return 0;
 }
