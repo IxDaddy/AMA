@@ -112,7 +112,7 @@ void SignalMA(StockData *m, Signal *S, size_t fastP, size_t slowP, int TradeStat
             S->ma = SELL;
             break;
         case LONG:
-            S->ma = CLOSE_AND_BUY;
+            S->ma = CLOSE_AND_SELL;
             break;
         case SHORT:
             S->ma = HOLD;
@@ -173,8 +173,6 @@ void Tweet(Trade *T, int Signal)
         err(1, "Out of memory");
 
     double price = BinancePrice(T->Stock);
-
-    printf("%d\n",Signal);
 
     switch (Signal)
     {
