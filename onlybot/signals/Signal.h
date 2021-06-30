@@ -111,7 +111,7 @@ char *CryptoStr(int stock, int a);
 
 // void SignalVisual(Signal *S);
 
-void SignalMain(Trade *T, char *interval, char *range);
+void SignalMain(Trade *T, StockData *Mat);
 
 
 #endif

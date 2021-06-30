@@ -21,7 +21,7 @@ def Trade(argv):
     request_client.post_order(symbol=str(trade['symbole']), side=sid, ordertype=OrderType.MARKET, quantity=float(trade["qty"]))
     
     
-""" format : python3 BiananceAPI <SYMBOL> <TYPE> <QTY> <LEV> """
+""" format : python3 BinanceAPI <SYMBOL> <TYPE> <QTY> <LEV> """
 def main(argv):
     Trade(argv)
 

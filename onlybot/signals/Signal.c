@@ -166,24 +166,15 @@ Signal *SignalChoose(StockData *m, Trade *T)
     return S;
 }
 
-// void SignalVisual(Signal *S)
-// {
-//     printf("MA            : %d\n", S->MA);
-//     printf("EMA           : %d\n", S->EMA);
-//     printf("RSI           : %d\n", S->RSI);
-//     printf("MACD          : %d\n", S->MACD);
-
-//     printf("TP            : %d\n", S->TakeProfit);
-//     printf("Sl            : %d\n", S->StopLoss);
-// }
-
 void Tweet(Trade *T, int Signal)
 {
-    char *cmd = malloc(3*strlen("python3 post_tweet.py") + strlen(T->BinanceStr) + sizeof(T->Quantity) + sizeof(T->Status) + 1);
+    char *cmd = malloc(2*sizeof(char)*(strlen("python3 post_tweet.py ") + strlen(T->BinanceStr) + sizeof(T->Quantity) + sizeof(T->Status))+200);
     if (cmd == NULL)
         err(1, "Out of memory");
 
     double price = BinancePrice(T->Stock);
+
+    printf("%d\n",Signal);
 
     switch (Signal)
     {
@@ -249,7 +240,7 @@ void TradeOrder(Trade *T, int Signal)
 
     sprintf(command, "python3 BinanceAPI.py %s %.3f %d %d", T->BinanceStr, T->Quantity*TradeUpdater(T, Signal), Signal, T->Leverage);
     system(command);
-    free(command);
+    //free(command);
     Tweet(T,Signal);
 }
 
@@ -262,10 +253,8 @@ void SignalAction(Signal *S, Trade *T)
     free(S);
 }
 
-void SignalMain(Trade *T, char *interval, char *range)
+void SignalMain(Trade *T, StockData *Mat)
 {
-    StockData *Mat = APItoTXTAIO(T->YahooStr, interval, range);
     Signal *S = SignalChoose(Mat,T);
     SignalAction(S, T);
-    StockData_destroy(Mat);
 }
