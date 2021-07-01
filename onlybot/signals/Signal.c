@@ -170,7 +170,7 @@ Signal *SignalChoose(StockData *m, Trade *T)
 
 void Tweet(Trade *T, int Signal)
 {
-    char *cmd = malloc(2*sizeof(char)*(strlen("python3 post_tweet.py ") + strlen(T->BinanceStr) + sizeof(T->Quantity) + sizeof(T->Status))+200);
+    char *cmd = malloc(2*sizeof(char)*(strlen("python3 post_tweet.py ") + strlen(T->BinanceStr) + sizeof(T->Quantity) + sizeof(T->Status))+50);
     if (cmd == NULL)
         err(1, "Out of memory");
 
@@ -197,7 +197,6 @@ void Tweet(Trade *T, int Signal)
     default:
         break;
     }
-    //printf("%s\n", command);
     system(cmd);
     free(cmd);
 }
