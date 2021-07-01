@@ -71,7 +71,7 @@ int main()
     {
         if (time(NULL) % 60 == 1)
         {
-            Mat = APItoTXTAIO("BTC-USD","5m","5d");
+            Mat = APItoTXTAIO("BTC-USD","1m","1d");
             SignalMain(T,Mat);
             break;
         }

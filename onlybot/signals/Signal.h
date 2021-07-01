@@ -69,6 +69,7 @@
 //API
 #define BINANCE 1
 #define YAHOO -1
+#define TWITTER 1000
 
 typedef struct Signal
 {
@@ -90,6 +91,7 @@ typedef struct Trade
     int Stock;
     char* YahooStr;
     char* BinanceStr;
+    char* TwitterStr;
     int Strategy;
     float Quantity;
     int Leverage;
