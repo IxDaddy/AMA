@@ -76,12 +76,6 @@ int main()
             break;
         }
     }
-    
-
-
-
-
-
 
     //TRAITEMENT PEREEN
 
@@ -93,7 +87,6 @@ int main()
     time_t t;
     time_t t1 = time(NULL);
     time_t *t2 = malloc(sizeof(time_t));
-    struct tm *tv = malloc(sizeof(struct tm));
 
     while (1)
     {
@@ -101,7 +94,7 @@ int main()
         if (t1 < t)
         {
             price = BinancePrice(BTC);
-            tv = localtime(t2);
+            localtime(t2);
 
             //STUFF
             if (t % 60 == 1)

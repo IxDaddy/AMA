@@ -95,6 +95,7 @@ typedef struct Trade
     int Leverage;
     int Status;
     double price;
+    int TradeNumber;
 } Trade;
 
 Trade *TradeInit(int Stock, float quantity, int leverage, int Strategy);

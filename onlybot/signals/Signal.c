@@ -68,6 +68,8 @@ Trade *TradeInit(int Stock, float quantity, int leverage, int Strategy)
     new->Quantity = quantity;
     new->Leverage = leverage;
     new->Status = NO;
+    new->price = 0;
+    new->TradeNumber = 0;
     return new;
 }
 
@@ -172,27 +174,25 @@ void Tweet(Trade *T, int Signal)
     if (cmd == NULL)
         err(1, "Out of memory");
 
-    double price = BinancePrice(T->Stock);
-
     switch (Signal)
     {
     case BUY:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nBUY %s @ %.2lf$ \"", T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nBUY \n%s @ %.2lf$ \"", T->BinanceStr, T->price);
         break;
     case SELL:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nSELL \n%s @ %.2lf$ \"", T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Ouvert :\nSELL \n%s @ %.2lf$ \"", T->BinanceStr, T->price);
         break;
     case CLOSE_LONG:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE LONG \n%s @ %.2lf$\"",T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE LONG \n%s @ %.2lf$\"",T->BinanceStr, T->price);
         break;
     case CLOSE_SHORT:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE SHORT \n%s @ %.2lf$\"",T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Fermé :\nCLOSE SHORT \n%s @ %.2lf$\"",T->BinanceStr, T->price);
         break;
     case CLOSE_AND_BUY:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nCLOSE SHORT AND BUY \n%s @ %.2lf$ \"", T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nSHORT TO LONG \n%s @ %.2lf$ \"", T->BinanceStr, T->price);
         break;
     case CLOSE_AND_SELL:
-        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nCLOSE LONG AND SELL \n%s @ %.2lf$ \"", T->BinanceStr, price);
+        sprintf(cmd, "python3 post_tweet.py \"Trade Inversé :\nLONG TO SHORT \n%s @ %.2lf$ \"", T->BinanceStr, T->price);
         break;
     default:
         break;
@@ -238,6 +238,7 @@ void TradeOrder(Trade *T, int Signal)
 
     sprintf(command, "python3 BinanceAPI.py %s %.3f %d %d", T->BinanceStr, T->Quantity*TradeUpdater(T, Signal), Signal, T->Leverage);
     system(command);
+    T->price = BinancePrice(T->Stock);
     //free(command);
     Tweet(T,Signal);
 }
