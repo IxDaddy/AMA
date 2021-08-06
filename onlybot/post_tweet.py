@@ -1,5 +1,6 @@
 import tweepy
 import sys
+import post_telegram
 
 def tweet(argv):
     """twitter_auth_keys = { 
@@ -35,6 +36,7 @@ def tweet(argv):
  
 def main(argv):
     tweet(argv)
+    post_telegram.send(argv)
 
 if __name__ == "__main__":
     main(sys.argv[1])
